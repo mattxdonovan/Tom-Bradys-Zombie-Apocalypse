@@ -162,14 +162,13 @@ body {
     font-weight: bold;
     letter-spacing: 2px;
     border: 3px solid #FFFFFF;
-    color: #FFFFFF;
     transition: all 0.3s linear;
 }
-.button:hover {
+/*.button:hover {
     background-color: #6DC7D0;
-    color: #FFFFFF;
+    color: black;
     cursor: pointer;
-}
+}*/
 .black {
   /*background-color: black;*/
   height: 78vh;
@@ -202,6 +201,7 @@ footer {
   font-size: 40px;
   border: white solid 2px;
   border-radius: 20px;
+  color: white;
   background-color: rgba(0, 0, 0, 0.5);
   margin-top: 15%;
   padding: 10px;
@@ -214,9 +214,12 @@ footer {
 }
 .playButton:hover{
   background-color: white;
-  color: black;
+  font-weight: bold;
 }
-
+.playButtonLink:hover{
+  color: black;
+  text-decoration: none;
+}
 .copyright {
     text-align: center;
     padding-top: 20px;

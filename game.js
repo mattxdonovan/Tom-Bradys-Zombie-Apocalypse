@@ -77,7 +77,7 @@ function startPlayersTurn(player) {
 		var message = "Do you want to buy more troops? You can get 30 more!";
 	}
 
-	let visualDiv = $('#visual');
+	let visualDiv = $('#visual2');
 	let controlDiv = $('#control');
 	let messageDiv = $('#message');
 
@@ -101,7 +101,7 @@ function startPlayersTurn(player) {
 	controlDiv.append(yesButton);
 	controlDiv.append(noButton);
 
-	visualDiv.html("<img style='max-height: 200px;' src='" + user.selectedHero.imageURL + " ' />");
+	visualDiv.html("<div class='center>'<img style='max-height: 180px;' class='heroImg' src='" + user.selectedHero.imageURL + " ' /></div'");
 
 	messageDiv.html('<h3 class="text-primary" >' + message + '</h3>');
 
@@ -123,20 +123,21 @@ function battle() {
 }
 
 function SelectTerritory() {
-	let visualDiv = $('#visual');
+	let visualDiv = $('#visual2');
 	let controlDiv = $('#control');
 	let messageDiv = $('#message');
 
 	visualDiv.html('<img style="max-height: 200px;" src="' + user.selectedHero.imageURL + '">');
 	controlDiv.empty();
-	messageDiv.html("<h3 class='text-primary'>Select one of your territories</h3>")
+	messageDiv.html("<h3 class='text-primary'>Select an infected territory to attack!</h3>")
 
 var x = 0;
 var color;
 		$("path").on("click", function(){
 			if (color == undefined) {
-				console.log($("path"))
+				// console.log($("path"))
 				color = $(this).attr('stroke');
+
 			}
 			// else if (color == $(this).attr('stroke')) {
 			//   messageDiv.html('<h3 class="text-danger"> Please choose two different colors</h3>');
@@ -146,31 +147,42 @@ var color;
 				console.log("Start rolling!")
 				let uDie1 = Math.floor(Math.random() * 6) + 1
 			  let uDie2 = Math.floor(Math.random() * 6) + 1
-				messageDiv.html('<h3 class="text-danger"> Player got' + uDie1 +'Zombie got' + uDie2 + '</h3>');
+        $("#zombieDie").attr("src","images/B"+uDie1+".png")
+        $("#userDie").attr("src","images/O"+uDie2+".png")
+				messageDiv.html('<h3 class="text-primary"> You got ' + uDie1 + '</h3>' + '<h3 class="text-danger"> Zombie got ' + uDie2 + '</h3>');
+
 				if( uDie1 < uDie2) {
 					// color = "blue"
-					console.log(this)
-					console.log("player won")
-
+					console.log(this + 'this')
+          // console.log(element[0] + 'element[0]');
+          console.log("zombies won")
 					$(this).attr("fill", "red")
+          $(this).attr('stroke', "red")
+          zombiesTerritories++
+          userTerritories--
+          // let marker = L.marker([long, lat], {icon: zombieIcon}).addTo(map);
+          // placeMarkers('element[0].coordinates','red') //trying to change icons
+          // var color = red;
+
 					// $(this) = undefined;
 
-				} else if ( uDie2 < uDie1) {
+				} else {
 					console.log(this)
-					// $("this").attr("fill", "blue")
-					// $(this) = undefined;
-					console.log("zombies won")
+          console.log("player won")
 					$(this).attr("fill", "blue")
+          $(this).attr("stroke", "blue")
+          userTerritories++
+          zombiesTerritories--
+          // $(this).attr('point[0], point[1]', "blue")
+          // placeMarkers('position.coords.latitude, position.coords.longitude','blue') //trying to change icons
+          // var color = blue;
 
+          // placeMarkers(path(d),'blue') //trying to change icons
 					// $("path[x]").attr("fill", "blue")
 					// x++;
-
-
 				}
 			}
-
 		})
-
 }
 
 function playGame() {
@@ -197,6 +209,7 @@ function assignTerritories(territories) {
 			userTerritories.push(element[0]);
 		} else {
 			zombiesTerritories.push(element[0]);
+      // console.log(element[0]);
 		}
 
 		counter ++
@@ -216,6 +229,8 @@ function assignTerritories(territories) {
 	zombies.territories = zombiesTerritories;
 
 	let assignedTerritories = zombiesTerritories.concat(userTerritories);
+
+  $("#territoriesOwned").append('<button class="btn btn-primary btn-sm padBot" type="button">Hero Territories <span class="badge">' + userTerritories.length + '</span> </button><button class="btn btn-danger btn-sm padBot" type="button">Zombie Territories <span class="badge">'+ zombiesTerritories.length + '</span></button>');
 
 	return assignedTerritories;
 
@@ -263,7 +278,7 @@ function placeMarkers(territory, color) {
 		let marker = L.marker([long, lat], {icon: heroIcon}).addTo(map);
 	}
 
-
+// console.log(territory.coordinates[i][0]);
 
 	for(var i = 1; i < territory.troops; i++) {
 		let center = [long, lat];
@@ -312,6 +327,7 @@ $(document).ready(function(){
     // Hide the Modal
     $("#myBtn").click(function(){
         $("#myModal").modal("hide");
+
     });
 });
 

@@ -3,6 +3,7 @@ body {
     background:black;
 }
 header {
+  margin-top: 5vh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -12,8 +13,10 @@ header {
     max-height: 100px;
 }
 #map {
-    height: 80vh;
+    height: 90vh;
+    width: 115vh;
     margin-left: 3em;
+    margin-top: 5em;
 }
 .center {
     display: flex;
@@ -22,12 +25,18 @@ header {
 .controls {
     background: rgba(14, 14, 14, .5);
     height: 95vh;
-    max-width: 280px;
+    max-width: 287px;
     display: flex;
     flex-direction: column;
     align-content: center;
-		margin-top: 10%;
+		margin-top: 4em;
+    margin-left: 2em;
+    align-items: center;
+    align-content: center;
 
+}
+.padBot {
+  margin-bottom: 3em;
 }
 .center-block {
     display: block;
@@ -49,9 +58,12 @@ header {
     justify-content: center;
 }
 .dice img {
-    border: 2px black solid;
-    height: 70px;
-    width: 70px;
+    border: 2px;
+    padding: 10px;
+    height: 90px;
+    width: 90px;
+    max-height: 100%;
+    max-width: 100%;
     color: white;
     display: flex;
     justify-content: center;
@@ -59,9 +71,12 @@ header {
     font-size: 48;
 }
 .dice2 img {
-    border: 2px black solid;
-    height: 70px;
-    width: 70px;
+    border: 2px;
+    padding: 10px;
+    max-height: 100%;
+    max-width: 100%;
+    height: 90px;
+    width: 90px;
     color: white;
     display: flex;
     justify-content: center;
@@ -90,7 +105,7 @@ header {
 	height: 8em;
 }
 .row{
-	margin: 0 auto;
+	/*margin: 0 auto;*/
 	padding-top: 2em;
 	padding-bottom: 2em;
 }
@@ -108,4 +123,17 @@ header {
   background-color: #a6afbf;
   box-shadow: -5px -5px 10px #666;
   transform: translateY(4px);
+}
+.controls {
+  background: darkgray;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-top: 0;
+}
+.heroImg {
+  /*padding-bottom: 5%;*/
+  padding-top: 3%;
+  /*padding-left: 18%;*/
+  min-height: 200px;
+  align-self: center !important;
 }
